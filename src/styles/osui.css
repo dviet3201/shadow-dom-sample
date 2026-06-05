@@ -1,0 +1,32 @@
+.osui-btn{
+  border:1px solid var(--os-border);
+  background:var(--os-surface);
+  padding:10px 14px;
+  border-radius:999px;
+  font-weight:600;
+  letter-spacing:.01em;
+  transition:transform .15s ease, box-shadow .2s ease, border-color .2s ease, background .2s ease;
+}
+.osui-btn:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(31,26,22,.12);cursor:pointer;}
+.osui-btn.primary{
+  color:#fff;
+  border-color:transparent;
+  background:linear-gradient(135deg,var(--os-accent),var(--os-accent-2));
+  box-shadow:0 10px 20px rgba(255,122,61,.25);
+}
+.osui-btn.ghost{background:transparent;border-color:transparent;color:var(--os-text);}
+.osui-btn[disabled]{opacity:.5;cursor:not-allowed;transform:none;box-shadow:none;}
+.osui-input,.osui-select{
+  border:1px solid var(--os-border);
+  background:var(--os-surface);
+  padding:12px 14px;
+  border-radius:var(--os-radius-sm);
+  width:100%;
+  box-sizing:border-box;
+  transition:border-color .2s ease, box-shadow .2s ease;
+}
+.osui-input:focus,.osui-select:focus{outline:none;border-color:var(--os-accent);box-shadow:var(--os-ring);}
+.osui-field{display:flex;flex-direction:column;gap:8px;margin-bottom:14px;}
+.osui-label{font-size:12px;opacity:.75;font-weight:600;letter-spacing:.02em;text-transform:uppercase;}
+.osui-error{color:#b00020;font-size:12px;}
+.osui-invalid .osui-input{border-color:#ff8aa4;background:#fff5f7;}
