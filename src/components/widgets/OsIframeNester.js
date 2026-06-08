@@ -43,7 +43,7 @@ customElements.define("os-iframe-nester", class extends HTMLElement {
 
   render() {
     const gridItems = Array.from({ length: this.branch })
-      .map((_, i) => `<div class="mfe-wrapper"><iframe id="shadow-iframe-${i}"></iframe></div>`)
+      .map((_, i) => `<div class="mfe-wrapper"><iframe id="nested-iframe-${i}"></iframe></div>`)
       .join("");
 
     this.shadowRoot.innerHTML = `
@@ -62,7 +62,7 @@ customElements.define("os-iframe-nester", class extends HTMLElement {
 
   loadIframes() {
     for (let i = 0; i < this.branch; i++) {
-      const iframe = this.shadowRoot.getElementById(`shadow-iframe-${i}`);
+      const iframe = this.shadowRoot.getElementById(`nested-iframe-${i}`);
       if (iframe) {
         const appName = `App ${String.fromCharCode(65 + i)}`;
         const html = this.buildLevelHTML(appName, 1, this.depth);
@@ -99,7 +99,7 @@ customElements.define("os-iframe-nester", class extends HTMLElement {
     html += '<div class="app-content">';
     
     if (hasNextLevel) {
-      html += `<div class="nested-iframe-wrapper"><iframe id="nested-iframe"></iframe></div>`;
+      html += `<div class="nested-iframe-wrapper"><iframe id="nested-iframe-${currentLevel}"></iframe></div>`;
     } else {
       html += `<p style="color: #666;"><strong>Leaf Level (${currentLevel})</strong></p>`;
     }
@@ -119,7 +119,7 @@ customElements.define("os-iframe-nester", class extends HTMLElement {
       const nextHTML = this.buildLevelHTML(appName, nextLevel, maxLevel);
       const encoded = encodeURIComponent(nextHTML);
       html += `setTimeout(function() {`;
-      html += `var nested = document.getElementById("nested-iframe");`;
+      html += `var nested = document.getElementById("nested-iframe-${currentLevel}");`;
       html += `if (nested) nested.src = "data:text/html;charset=utf-8,${encoded}";`;
       html += `}, 100);`;
     }
